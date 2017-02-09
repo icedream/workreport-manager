@@ -1,0 +1,54 @@
+[
+  {
+    "id": "calendar_week",
+    "translation": "Kalenderwoche"
+  },
+  {
+    "id": "calendar_week_short",
+    "translation": "KW"
+  },
+  {
+    "id": "department",
+    "translation": "Abteilung"
+  },
+  {
+    "id": "instructor",
+    "translation": "Ausbilder/in"
+  },
+  {
+    "id": "legal_representative",
+    "translation": "Gesetzlicher Vertreter"
+  },
+  {
+    "id": "name",
+    "translation": "Name"
+  },
+  {
+    "id": "no_school_periods_this_week",
+    "translation": "Hat in dieser Woche noch nicht stattgefunden."
+  },
+  {
+    "id": "operational_activities",
+    "translation": "Betriebliche Tätigkeiten"
+  },
+  {
+    "id": "operational_instruction",
+    "translation": "Betrieblicher Unterricht"
+  },
+  {
+    "id": "professional_school",
+    "translation": "Berufsschule"
+  },
+  {
+    "id": "proof_of_education",
+    "translation": "Ausbildungsnachweis Nr. {{.Count}}"
+  },
+  {
+    "id": "trainee",
+    "translation": "Auszubildende/r"
+  },
+  {
+  	"id": "time_period",
+  	"translation": "Zeitraum"
+  }
+]

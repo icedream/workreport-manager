@@ -1,0 +1,54 @@
+[
+  {
+    "id": "calendar_week",
+    "translation": "Calendar week"
+  },
+  {
+    "id": "calendar_week_short",
+    "translation": "CW"
+  },
+  {
+    "id": "department",
+    "translation": "Department"
+  },
+  {
+    "id": "instructor",
+    "translation": "Instructor"
+  },
+  {
+    "id": "legal_representative",
+    "translation": "Legal representative"
+  },
+  {
+    "id": "name",
+    "translation": "Name"
+  },
+  {
+    "id": "no_school_periods_this_week",
+    "translation": "No school periods this week."
+  },
+  {
+    "id": "operational_activities",
+    "translation": "Operational activities"
+  },
+  {
+    "id": "operational_instruction",
+    "translation": "Operational instruction"
+  },
+  {
+    "id": "professional_school",
+    "translation": "Professional school"
+  },
+  {
+    "id": "proof_of_education",
+    "translation": "Proof of Education No. {{.Count}}"
+  },
+  {
+    "id": "trainee",
+    "translation": "Trainee"
+  },
+  {
+  	"id": "time_period",
+  	"translation": "Time period"
+  }
+]
