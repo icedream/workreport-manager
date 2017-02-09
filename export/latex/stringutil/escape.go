@@ -15,6 +15,7 @@ var replacements = []converter{
 	newStringConverter("ß", "\\ss{}"),
 
 	newSimpleRegexConverter(`"([^"]+)"`, `\enquote{$1}`),
+	newSimpleRegexConverter("`([^`]+)`", "\\verb`$1`"),
 }
 
 // TexEscape modifies a string so it can be safely places in a LaTeX file
