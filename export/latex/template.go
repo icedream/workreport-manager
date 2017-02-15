@@ -34,12 +34,13 @@ var exportTemplate = template.Must(template.
 
 \documentclass[11pt,a4paper,oneside]{article}
 
-\usepackage{fancyhdr}
-\usepackage{tabularx}
 \usepackage[left=2cm,right=2cm,top=2cm,bottom=6cm,includeheadfoot]{geometry}
 \usepackage{csquotes}
+\usepackage{fancyhdr}
 \usepackage{fontspec}
 \usepackage{ifluatex}
+\usepackage{tabularx}
+\usepackage{titling}
 \ifluatex
 \else
 	\usepackage[utf8]{inputenc}
@@ -49,8 +50,13 @@ var exportTemplate = template.Must(template.
 \fancyhf{}
 \setlength{\headheight}{2cm}
 
-\newcommand{\Name}{<.Project.Name>}
-\newcommand{\Department}{<.Project.Department>}
+\newcommand{\department}[1]{\global\def\wrDepartment{#1}}
+\newcommand{\workreportNumber}[1]{\global\def\wrNumber{#1}}
+\newcommand{\workreportDateFrom}[1]{\global\def\wrDateFrom{#1}}
+\newcommand{\workreportDateTo}[1]{\global\def\wrDateTo{#1}}
+
+\author{<.Project.Name>}
+\department{<.Project.Department>}
 
 \newcommand{\wrSigningField}[0]{
 	\begin{tabularx}{\textwidth}{| X | X | X |}
@@ -62,35 +68,42 @@ var exportTemplate = template.Must(template.
 	\end{tabularx}
 }
 
-\newenvironment{weeklyreport}{
-}{
+\fancypagestyle{weeklyreport} {
 	\fancyfoot[C]{\wrSigningField}
 }
 
-\newcommand{\preweeklyreporthead}[3]{}
-
-\newcommand{\weeklyreporthead}[3]{
-	\preweeklyreporthead{#1}{#2}{#3}
+\newenvironment{weeklyreport}[3]{
+	\newpage
+	\thispagestyle{weeklyreport}
 	\fancyhead[R]{
 		\begin{tabularx}{8cm}{rl}
-			\textbf{<T "name">}: & \Name \\
-			\textbf{<T "department">}: & \Department \\
-			\textbf{<T "time_period">}: & #2 - #3 \\
+			\textbf{<T "name">}: & \theauthor \\
+			\textbf{<T "department">}: & \wrDepartment \\
+			\textbf{<T "time_period">}: & \wrDateFrom~-~\wrDateTo \\
 		\end{tabularx}
 	}
-	\fancyfoot{}
-	\newpage
-	\setcounter{section}{#1}
+
+	\workreportNumber{#1}
+	\workreportDateFrom{#2}
+	\workreportDateTo{#3}
+
+	\setcounter{section}{\wrNumber}
 	\setcounter{subsection}{0}
-	\section*{<T "proof_of_education" "#1">}
-	\addcontentsline{toc}{section}{<T "proof_of_education" "#1">}
+	\section*{Ausbildungsnachweis Nr. \wrNumber}
+	\addcontentsline{toc}{section}{Ausbildungsnachweis Nr. \wrNumber}
+}{
 }
+
+\newcommand{\weeklyreporthead}[3]{}
 
 \newcommand{\weeklyreportsection}[1]{
 	\subsection*{#1}
 }
 
 <with .TexInputs>
+
+% Includes
+
 <range .>
 \input{<.>}
 <end>
@@ -100,8 +113,7 @@ var exportTemplate = template.Must(template.
 \tableofcontents
 
 <range $index, $week := .Project.Weeks>
-\begin{weeklyreport}
-	\weeklyreporthead{<add $index 1>}{<beginofweek $week.Date>}{<endofweek $week.Date>}
+\begin{weeklyreport}{<add $index 1>}{<beginofweek $week.Date>}{<endofweek $week.Date>}
 
 	\weeklyreportsection{<T "operational_activities">}
 	<with $week.WorkActivities>
