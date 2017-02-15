@@ -3,7 +3,9 @@ package latex
 import (
 	"io"
 	"text/template"
+	"time"
 
+	"github.com/jinzhu/now"
 	"github.com/nicksnyder/go-i18n/i18n"
 
 	"git.dekart811.net/icedream/workreportmgr/project"
@@ -32,8 +34,27 @@ func (e *Exporter) Export(prj *project.Project, w io.Writer) (err error) {
 		return
 	}
 
-	exportTemplate.Funcs(template.FuncMap{
+	now.FirstDayMonday = prj.FirstDayMonday
+
+	exportTemplate = exportTemplate.Funcs(template.FuncMap{
 		"T": T,
+		"beginofweek": func(date project.Date) project.Date {
+			day := now.New(date.Time).BeginningOfWeek()
+			if prj.OnlyShowWorkDays && !now.FirstDayMonday {
+				day = day.Add(time.Hour * 24)
+			}
+			return project.Date{Time: day}
+		},
+		"endofweek": func(date project.Date) project.Date {
+			day := now.New(date.Time).EndOfWeek()
+			if prj.OnlyShowWorkDays {
+				day = day.Add(time.Hour * -24)
+				if now.FirstDayMonday {
+					day = day.Add(time.Hour * -24)
+				}
+			}
+			return project.Date{Time: day}
+		},
 	})
 
 	data := struct {

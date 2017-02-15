@@ -16,16 +16,16 @@ const dateFormat = "02.01.2006" // TODO - localize!
 var exportTemplate = template.Must(template.
 	New("latex_export").
 	Funcs(template.FuncMap{
-		"T":      i18n.IdentityTfunc,
+		"T": i18n.IdentityTfunc,
+		"beginofweek": func(date project.Date) project.Date {
+			return project.Date{Time: now.New(date.Time).BeginningOfWeek()}
+		},
+		"endofweek": func(date project.Date) project.Date {
+			return project.Date{Time: now.New(date.Time).EndOfWeek()}
+		},
 		"escape": stringutil.TexEscape,
 		"add": func(a, b int) int {
 			return a + b
-		},
-		"beginofweek": func(date project.Date) project.Date {
-			return project.Date{now.New(date.Time).BeginningOfWeek()}
-		},
-		"endofweek": func(date project.Date) project.Date {
-			return project.Date{now.New(date.Time).EndOfWeek()}
 		},
 	}).
 	Delims("<", ">").
