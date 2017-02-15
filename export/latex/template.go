@@ -89,8 +89,8 @@ var exportTemplate = template.Must(template.
 
 	\setcounter{section}{\wrNumber}
 	\setcounter{subsection}{0}
-	\section*{Ausbildungsnachweis Nr. \wrNumber}
-	\addcontentsline{toc}{section}{Ausbildungsnachweis Nr. \wrNumber}
+	\section*{<T "proof_of_education" "\\wrNumber">}
+	\addcontentsline{toc}{section}{<T "proof_of_education" "\\wrNumber">}
 }{
 }
 
