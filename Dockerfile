@@ -1,0 +1,26 @@
+FROM alpine:edge
+
+ARG GO_ROOT_IMPORT_PATH=git.dekart811.net/icedream/workreportmgr
+
+COPY . "/go/src/${GO_ROOT_IMPORT_PATH}"
+RUN \
+	apk add --no-cache --virtual .build-deps \
+		go=1.7.4-r1 \
+		git \
+		libc-dev \
+		&&\
+	git config --global http.followRedirects true &&\
+	mkdir -p /go &&\
+	export GOPATH=/go &&\
+	export PATH="${PATH}:${GOPATH}/bin" &&\
+	go get -v github.com/jteeuwen/go-bindata/... &&\
+	export CGO_ENABLED=0 &&\
+	go get -v -d "${GO_ROOT_IMPORT_PATH}/..." &&\
+	(cd "${GOPATH}/src/${GO_ROOT_IMPORT_PATH}" &&\
+		go generate -v ./...) &&\
+	go build -v -a -installsuffix cgo \
+		-o /usr/local/bin/workreportmgr "${GO_ROOT_IMPORT_PATH}" &&\
+	apk del .build-deps &&\
+	rm -rf "${GOPATH}"
+
+ENTRYPOINT ["workreportmgr"]
