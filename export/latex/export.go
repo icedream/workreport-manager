@@ -8,6 +8,7 @@ import (
 	"github.com/jinzhu/now"
 	"github.com/nicksnyder/go-i18n/i18n"
 
+	"git.dekart811.net/icedream/workreportmgr/export/latex/stringutil"
 	"git.dekart811.net/icedream/workreportmgr/project"
 )
 
@@ -29,9 +30,15 @@ type Exporter struct {
 // Export generates LaTeX code from the given project and writes it to the given
 // writer.
 func (e *Exporter) Export(prj *project.Project, w io.Writer) (err error) {
-	T, err := i18n.Tfunc(e.Locale)
+	originalT, err := i18n.Tfunc(e.Locale)
 	if err != nil {
 		return
+	}
+
+	// Wrap translations with latexize just to be safe
+	// type TranslateFunc func(translationID string, args ...interface{}) string
+	T := func(translationID string, args ...interface{}) string {
+		return stringutil.Latexize(originalT(translationID, args...))
 	}
 
 	now.FirstDayMonday = prj.FirstDayMonday
