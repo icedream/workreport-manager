@@ -23,10 +23,10 @@ var exportTemplate = template.Must(template.
 		"endofweek": func(date project.Date) project.Date {
 			return project.Date{Time: now.New(date.Time).EndOfWeek()}
 		},
-		"escape": stringutil.TexEscape,
 		"add": func(a, b int) int {
 			return a + b
 		},
+		"latexize": stringutil.Latexize,
 	}).
 	Delims("<", ">").
 	Parse(`% !TeX
@@ -89,8 +89,8 @@ var exportTemplate = template.Must(template.
 
 	\setcounter{section}{\wrNumber}
 	\setcounter{subsection}{0}
-	\section*{<T "proof_of_education" "\\wrNumber">}
-	\addcontentsline{toc}{section}{<T "proof_of_education" "\\wrNumber">}
+	\section*{<T "proof_of_education_prefix"> \wrNumber}
+	\addcontentsline{toc}{section}{<T "proof_of_education_prefix"> \wrNumber}
 }{
 }
 
@@ -119,25 +119,25 @@ var exportTemplate = template.Must(template.
 	<with $week.WorkActivities>
 	\begin{itemize}
 		<range .>
-		\item <. | escape>
+		\item <. | latexize>
 		<end>
 	\end{itemize}
 	<end>
 
 	\weeklyreportsection{<T "operational_instruction">}
-	<$week.WorkActivityDetails | escape>
+	<$week.WorkActivityDetails | latexize>
 
 	\weeklyreportsection{<T "professional_school">}
 	<if eq (len $week.Periods) 0>
-		<T "no_school_periods_this_week" | escape>
+		<T "no_school_periods_this_week">
 	<else>
 	\begin{itemize}
 		<range $week.Periods>
 		\item{
-			<- .Subject | escape ->
+			<- .Subject | latexize ->
 			<- with .Topics ->:
 			<range $index, $topic := . ->
-			<- if ne $index 0 ->, <end -><- $topic | escape ->
+			<- if ne $index 0 ->, <end -><- $topic | latexize ->
 			<- end ->
 			<- end ->
 		}

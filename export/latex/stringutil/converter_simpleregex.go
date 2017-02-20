@@ -7,7 +7,7 @@ type simpleRegexConverter struct {
 	replacement string
 }
 
-func newSimpleRegexConverter(regexStr string, replacementStr string) *simpleRegexConverter {
+func NewSimpleRegexConverter(regexStr string, replacementStr string) *simpleRegexConverter {
 	return &simpleRegexConverter{
 		regex:       regexp.MustCompile(regexStr),
 		replacement: replacementStr,

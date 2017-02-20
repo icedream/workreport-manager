@@ -1,5 +1,5 @@
 package stringutil
 
-type converter interface {
+type Converter interface {
 	Process(text string) string
 }

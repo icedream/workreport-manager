@@ -1,26 +1,20 @@
 package stringutil
 
-var replacements = []converter{
-	newStringConverter("{", "\\{"),
-	newStringConverter("}", "\\}"),
-	newStringConverter("\\", "\\textbackslash{}"),
+// BackslashEscape modifies a string so any occurrences of given substrings
+// are prefixed with a backslash.
+func BackslashEscape(s string, substrings ...string) string {
+	replacements := []Converter{}
 
-	newStringConverter("&", "\\&"),
-	newStringConverter("%", "\\%"),
-	newStringConverter("$", "\\$"),
-	newStringConverter("#", "\\#"),
-	newStringConverter("_", "\\_"),
-	newStringConverter("~", "\\textasciitilde{}"),
-	newStringConverter("^", "\\textasciicircum{}"),
-	newStringConverter("ß", "\\ss{}"),
+	for _, substring := range substrings {
+		replacements = append(replacements, NewStringConverter(substring, "\\"+substring))
+	}
 
-	newSimpleRegexConverter(`"([^"]+)"`, `\enquote{$1}`),
-	newSimpleRegexConverter("`([^`]+)`", "\\verb`$1`"),
+	return CustomEscape(s, replacements...)
 }
 
-// TexEscape modifies a string so it can be safely places in a LaTeX file
-// without causing any errors due to special characters.
-func TexEscape(s string) string {
+// CustomEscape modifies a string according to the given conversion rules in
+// the exact given order.
+func CustomEscape(s string, replacements ...Converter) string {
 	for _, replacer := range replacements {
 		s = replacer.Process(s)
 	}

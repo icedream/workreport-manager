@@ -7,7 +7,7 @@ type stringConverter struct {
 	replacement string
 }
 
-func newStringConverter(old string, replacementStr string) *stringConverter {
+func NewStringConverter(old string, replacementStr string) *stringConverter {
 	return &stringConverter{
 		old:         old,
 		replacement: replacementStr,

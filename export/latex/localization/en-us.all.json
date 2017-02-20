@@ -40,8 +40,8 @@
     "translation": "Professional school"
   },
   {
-    "id": "proof_of_education",
-    "translation": "Proof of Education No. {{.Count}}"
+    "id": "proof_of_education_prefix",
+    "translation": "Proof of Education No."
   },
   {
     "id": "trainee",

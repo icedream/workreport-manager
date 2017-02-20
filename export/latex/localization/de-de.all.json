@@ -40,8 +40,8 @@
     "translation": "Berufsschule"
   },
   {
-    "id": "proof_of_education",
-    "translation": "Ausbildungsnachweis Nr. {{.Count}}"
+    "id": "proof_of_education_prefix",
+    "translation": "Ausbildungsnachweis Nr."
   },
   {
     "id": "trainee",
