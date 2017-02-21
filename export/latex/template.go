@@ -59,10 +59,16 @@ var exportTemplate = template.Must(template.
 \department{<.Project.Department>}
 
 \newcommand{\wrSigningField}[0]{
+	<if .Project.HideLegalRepSignField>
 	\begin{tabularx}{\textwidth}{| X | X | X |}
+	<else>
+	\begin{tabularx}{\textwidth}{| X | X |}
+	<end>
 		\hline
 		<T "trainee"> &
+		<if not .Project.HideLegalRepSignField>
 		<T "legal_representative"> &
+		<end>
 		<T "instructor"> \\[2cm]
 		\hline
 	\end{tabularx}
