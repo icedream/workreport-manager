@@ -1,11 +1,10 @@
-FROM alpine:edge
+FROM golang:1.8-alpine
 
 ARG GO_ROOT_IMPORT_PATH=git.dekart811.net/icedream/workreportmgr
 
 COPY . "/go/src/${GO_ROOT_IMPORT_PATH}"
 RUN \
 	apk add --no-cache --virtual .build-deps \
-		go=1.7.4-r1 \
 		git \
 		libc-dev \
 		&&\
