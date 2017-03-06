@@ -38,6 +38,7 @@ var exportTemplate = template.Must(template.
 \usepackage{csquotes}
 \usepackage{fancyhdr}
 \usepackage{fontspec}
+\usepackage{hyperref}
 \usepackage{ifluatex}
 \usepackage{tabularx}
 \usepackage{titling}
