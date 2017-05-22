@@ -12,7 +12,9 @@ RUN \
 	mkdir -p /go &&\
 	export GOPATH=/go &&\
 	export PATH="${PATH}:${GOPATH}/bin" &&\
-	go get -v github.com/jteeuwen/go-bindata/... &&\
+	go get -v \
+		github.com/jteeuwen/go-bindata/... \
+		golang.org/x/tools/cmd/goimports &&\
 	export CGO_ENABLED=0 &&\
 	go get -v -d "${GO_ROOT_IMPORT_PATH}/..." &&\
 	(cd "${GOPATH}/src/${GO_ROOT_IMPORT_PATH}" &&\
