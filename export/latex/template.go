@@ -31,21 +31,22 @@ var exportTemplate = template.Must(template.
 	Delims("<", ">").
 	Parse(`% !TeX
 <- with .TexMarker.Program> program = <.><end>
-
 \documentclass[11pt,a4paper,oneside]{article}
+
+\usepackage{ifxetex}
+\ifxetex
+	\usepackage{fontspec}
+\else
+	\usepackage[T1]{fontenc}
+	\usepackage[utf8]{inputenc}
+\fi
 
 \usepackage[left=2cm,right=2cm,top=2cm,bottom=6cm,includeheadfoot]{geometry}
 \usepackage{csquotes}
 \usepackage{fancyhdr}
-\usepackage{fontspec}
 \usepackage{hyperref}
-\usepackage{ifluatex}
 \usepackage{tabularx}
 \usepackage{titling}
-\ifluatex
-\else
-	\usepackage[utf8]{inputenc}
-\fi
 
 \pagestyle{fancy}
 \fancyhf{}
