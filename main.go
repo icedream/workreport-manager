@@ -4,8 +4,8 @@ import (
 	"log"
 	"os"
 
-	"git.dekart811.net/icedream/workreportmgr/export/latex"
-	"git.dekart811.net/icedream/workreportmgr/project"
+	"github.com/icedream/workreportmgr/export/latex"
+	"github.com/icedream/workreportmgr/project"
 
 	"github.com/alecthomas/kingpin"
 )

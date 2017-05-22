@@ -5,8 +5,8 @@ import (
 	"os"
 	"text/template"
 
-	"git.dekart811.net/icedream/workreportmgr/export/latex/stringutil"
-	"git.dekart811.net/icedream/workreportmgr/project"
+	"github.com/icedream/workreportmgr/export/latex/stringutil"
+	"github.com/icedream/workreportmgr/project"
 	"github.com/jinzhu/now"
 	"github.com/nicksnyder/go-i18n/i18n"
 )

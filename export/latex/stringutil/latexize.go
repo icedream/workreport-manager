@@ -3,7 +3,7 @@ package stringutil
 import (
 	"strings"
 
-	"git.dekart811.net/icedream/workreportmgr/internal/util"
+	"github.com/icedream/workreportmgr/internal/util"
 	"github.com/russross/blackfriday"
 )
 

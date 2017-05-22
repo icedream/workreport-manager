@@ -8,8 +8,8 @@ import (
 	"github.com/jinzhu/now"
 	"github.com/nicksnyder/go-i18n/i18n"
 
-	"git.dekart811.net/icedream/workreportmgr/export/latex/stringutil"
-	"git.dekart811.net/icedream/workreportmgr/project"
+	"github.com/icedream/workreportmgr/export/latex/stringutil"
+	"github.com/icedream/workreportmgr/project"
 )
 
 // TexMarker represents information about a TeX document to be read in by the

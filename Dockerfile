@@ -1,6 +1,6 @@
 FROM golang:1.8-alpine
 
-ARG GO_ROOT_IMPORT_PATH=git.dekart811.net/icedream/workreportmgr
+ARG GO_ROOT_IMPORT_PATH=github.com/icedream/workreportmgr
 
 COPY . "/go/src/${GO_ROOT_IMPORT_PATH}"
 RUN \
