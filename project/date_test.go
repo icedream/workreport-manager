@@ -4,7 +4,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/icedream/workreportmgr/project"
+	"github.com/icedream/workreport-manager/project"
 
 	"github.com/stretchr/testify/require"
 )
