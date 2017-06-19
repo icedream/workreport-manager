@@ -64,14 +64,30 @@ func (e *Exporter) Export(prj *project.Project, w io.Writer) (err error) {
 		},
 	})
 
+	// Generate work report numbers
+	actualNumber := 0
+	weeknums := map[int]int{}
+	for i, week := range prj.Weeks {
+		actualNumber++
+
+		if week.Number > 0 {
+			// Use custom number for this week's report
+			actualNumber = week.Number
+		}
+
+		weeknums[i] = actualNumber
+	}
+
 	data := struct {
-		Project   *project.Project
-		TexMarker TexMarker
-		TexInputs []string
+		Project     *project.Project
+		TexMarker   TexMarker
+		TexInputs   []string
+		WeekNumbers map[int]int
 	}{
-		Project:   prj,
-		TexInputs: e.Inputs,
-		TexMarker: e.Marker,
+		Project:     prj,
+		TexInputs:   e.Inputs,
+		TexMarker:   e.Marker,
+		WeekNumbers: weeknums,
 	}
 	return exportTemplate.Execute(w, data)
 }

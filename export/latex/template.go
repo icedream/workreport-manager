@@ -121,7 +121,7 @@ var exportTemplate = template.Must(template.
 \tableofcontents
 
 <range $index, $week := .Project.Weeks>
-\begin{weeklyreport}{<add $index 1>}{<beginofweek $week.Date>}{<endofweek $week.Date>}
+\begin{weeklyreport}{<index $.WeekNumbers $index>}{<beginofweek $week.Date>}{<endofweek $week.Date>}
 
 	\weeklyreportsection{<T "operational_activities">}
 	<with $week.WorkActivities>
