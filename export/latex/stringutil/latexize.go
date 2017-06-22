@@ -23,7 +23,7 @@ const (
 var additionalTexReplacements = []Converter{
 	// NewStringConverter("{", "\\{"),
 	// NewStringConverter("}", "\\}"),
-	// NewStringConverter("\\", "\\textbackslash{}"),
+	NewStringConverter("\\\\", "\\textbackslash{}"),
 	//
 	// NewStringConverter("&", "\\&"),
 	// NewStringConverter("%", "\\%"),
