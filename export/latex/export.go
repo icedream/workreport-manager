@@ -41,13 +41,16 @@ func (e *Exporter) Export(prj *project.Project, w io.Writer) (err error) {
 		return stringutil.Latexize(originalT(translationID, args...))
 	}
 
-	now.FirstDayMonday = prj.FirstDayMonday
+	// TODO: Reflect WeekStartDay exactly in project file, too
+	if prj.FirstDayMonday {
+		now.WeekStartDay = time.Monday
+	}
 
 	exportTemplate = exportTemplate.Funcs(template.FuncMap{
 		"T": T,
 		"beginofweek": func(date project.Date) project.Date {
 			day := now.New(date.Time).BeginningOfWeek()
-			if prj.OnlyShowWorkDays && !now.FirstDayMonday {
+			if prj.OnlyShowWorkDays && now.WeekStartDay != time.Monday {
 				day = day.Add(time.Hour * 24)
 			}
 			return project.Date{Time: day}
@@ -56,7 +59,7 @@ func (e *Exporter) Export(prj *project.Project, w io.Writer) (err error) {
 			day := now.New(date.Time).EndOfWeek()
 			if prj.OnlyShowWorkDays {
 				day = day.Add(time.Hour * -24)
-				if now.FirstDayMonday {
+				if now.WeekStartDay == time.Monday {
 					day = day.Add(time.Hour * -24)
 				}
 			}

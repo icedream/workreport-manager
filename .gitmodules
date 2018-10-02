@@ -1,27 +1,3 @@
-[submodule "vendor/github.com/alecthomas/kingpin"]
-	path = vendor/github.com/alecthomas/kingpin
-	url = https://github.com/alecthomas/kingpin
-[submodule "vendor/github.com/alecthomas/template"]
-	path = vendor/github.com/alecthomas/template
-	url = https://github.com/alecthomas/template
-[submodule "vendor/github.com/alecthomas/units"]
-	path = vendor/github.com/alecthomas/units
-	url = https://github.com/alecthomas/units
-[submodule "vendor/github.com/ghodss/yaml"]
-	path = vendor/github.com/ghodss/yaml
-	url = https://github.com/ghodss/yaml
-[submodule "vendor/github.com/jinzhu/now"]
-	path = vendor/github.com/jinzhu/now
-	url = https://github.com/jinzhu/now
-[submodule "vendor/github.com/nicksnyder/go-i18n"]
-	path = vendor/github.com/nicksnyder/go-i18n
-	url = https://github.com/nicksnyder/go-i18n
-[submodule "vendor/github.com/shurcooL/sanitized_anchor_name"]
-	path = vendor/github.com/shurcooL/sanitized_anchor_name
-	url = https://github.com/shurcooL/sanitized_anchor_name
-[submodule "vendor/gopkg.in/yaml.v2"]
-	path = vendor/gopkg.in/yaml.v2
-	url = https://gopkg.in/yaml.v2
 [submodule "vendor/github.com/russross/blackfriday"]
 	path = vendor/github.com/russross/blackfriday
 	url = https://github.com/icedream/blackfriday.git
